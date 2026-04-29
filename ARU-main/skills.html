@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <link rel="manifest" href="manifest.json" />
+    <meta name="theme-color" content="#ffadaa" />
+    <title>Aru Skills Matrix</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="skills.css" />
+  </head>
+  <body>
+    <header>
+      <div class="menu-trigger" onclick="window.toggleSidebar()">☰</div>
+      <div class="header-info"><span id="view-title">SKILLS MATRIX</span></div>
+    </header>
+
+    <nav id="sidebar">
+      <div class="sidebar-header">
+        ☁️ Navigator
+        <span class="close-btn" onclick="window.toggleSidebar()">×</span>
+      </div>
+      <ul>
+        <li><a href="index.html">📚 Syllabus Tracker</a></li>
+        <li><a href="projects.html">🚀 Project Manager</a></li>
+        <li><a href="internships.html">💼 Internships & Courses</a></li>
+        <li><a href="books.html">📖 Book Vault</a></li>
+        <li><a href="skills.html">⚡ Skills Matrix</a></li>
+        <li><a href="habits.html">🔥 Habit Tracker</a></li>
+        <li><a href="lib.html">✨ Library</a></li>
+      </ul>
+    </nav>
+
+    <main id="app-content">
+      <div class="list-header">
+        <h1 style="margin: 0; font-size: 1.2rem; letter-spacing: -0.5px">
+          Current Mastery
+        </h1>
+        <button class="add-btn" onclick="window.openModal()">
+          + Add Skill
+        </button>
+      </div>
+
+      <div id="skills-container"></div>
+
+      <hr
+        style="border: 0; border-top: 2px dashed var(--border); margin: 40px 0"
+      />
+
+      <div class="suggestions-section">
+        <h2
+          style="font-size: 1rem; margin-bottom: 15px; color: var(--text-main)"
+        >
+          ✨ Skill Suggestions
+        </h2>
+        <input
+          type="text"
+          id="suggestion-search"
+          placeholder="Search skills (e.g. Java, AWS...)"
+          style="margin-bottom: 20px"
+          oninput="window.renderSkills()"
+        />
+        <div id="skill-suggestions" class="suggestions-grid"></div>
+      </div>
+    </main>
+
+    <div id="skills-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-modal" onclick="window.closeModal()">×</span>
+        <h2 id="form-title" style="margin-top: 0; font-size: 1.3rem">
+          Skill Level
+        </h2>
+
+        <label class="field-label">Skill Name</label>
+        <input
+          type="text"
+          id="skill-name"
+          placeholder="e.g. Python, AWS, UI Design"
+        />
+
+        <label class="field-label">Mastery Level (0 - 100%)</label>
+        <input
+          type="number"
+          id="skill-level"
+          placeholder="85"
+          min="0"
+          max="100"
+        />
+
+        <label class="field-label">Category</label>
+        <select id="skill-cat">
+          <option value="frontend">🎨 Frontend</option>
+          <option value="backend">⚙️ Backend</option>
+          <option value="devops">☁️ Cloud / DevOps</option>
+          <option value="soft">💡 Soft Skills</option>
+        </select>
+
+        <div style="display: flex; gap: 10px; margin-top: 20px">
+          <button
+            class="btn-full"
+            id="submit-btn"
+            onclick="window.handleSkillSubmit()"
+          >
+            Sync Matrix
+          </button>
+          <button class="btn-delete-modal" onclick="window.deleteActiveSkill()">
+            🗑️
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="skills.js"></script>
+  </body>
+</html>

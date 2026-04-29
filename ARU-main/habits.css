@@ -1,0 +1,258 @@
+:root {
+  --bg-app: #fdf6f0; /* Soft Cream */
+  --bg-card: #ffffff;
+  --text-main: #5d534a; /* Warm Coffee Brown */
+  --text-muted: #a0938a;
+  --border: #f1e4d9;
+  --status-green: #a8dadc; /* Pastel Mint */
+  --status-blue: #a3c9f1; /* Pastel Sky */
+  --accent: #ffadaa; /* Pastel Rose */
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg-app);
+  color: var(--text-main);
+  font-family: "Quicksand", sans-serif;
+  margin: 0;
+  padding: 80px 20px 20px;
+}
+
+/* Header & Sidebar */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  padding: 15px 20px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  z-index: 100;
+}
+
+.menu-trigger {
+  font-size: 24px;
+  cursor: pointer;
+  margin-right: 15px;
+}
+
+#sidebar {
+  position: fixed;
+  top: 0;
+  left: -280px;
+  width: 280px;
+  height: 100%;
+  background: white;
+  z-index: 1000;
+  transition: 0.3s;
+  box-shadow: 5px 0 15px rgba(0, 0, 0, 0.05);
+  padding: 20px;
+}
+
+#sidebar.open {
+  left: 0;
+}
+
+#sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 30px;
+}
+
+#sidebar li a {
+  display: block;
+  padding: 12px;
+  text-decoration: none;
+  color: var(--text-main);
+  font-weight: 600;
+  border-radius: 10px;
+}
+
+#sidebar li a:hover {
+  background: var(--bg-app);
+}
+
+.sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 700;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+/* Main Content */
+#app-content {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.add-btn {
+  background: var(--accent);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* Habit Block */
+.habit-block {
+  background: white;
+  border-radius: 24px;
+  padding: 20px;
+  margin-bottom: 25px;
+  border: 1px solid var(--border);
+  box-shadow: 0 8px 20px rgba(93, 83, 74, 0.04);
+}
+
+.habit-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.proj-name {
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.success-rate {
+  background: var(--bg-app);
+  color: var(--text-muted);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 10px;
+  margin-left: 10px;
+}
+
+/* Calendar */
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+}
+
+.day-name-header {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.cal-day {
+  aspect-ratio: 1/1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 10px;
+  background: #fffcf9;
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: 0.2s;
+  color: var(--text-muted);
+}
+
+.cal-day.completed {
+  background: var(--status-green);
+  color: #457b9d;
+  border-color: #91cacc;
+}
+
+.cal-day.is-today {
+  border: 2px solid var(--status-blue);
+  color: var(--status-blue);
+}
+
+/* Navigation Buttons */
+.nav-btn {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
+/* Modal Styling */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(93, 83, 74, 0.4);
+  z-index: 2000;
+}
+
+.modal-content {
+  background: white;
+  width: 90%;
+  max-width: 400px;
+  margin: 100px auto;
+  padding: 30px;
+  border-radius: 25px;
+  position: relative;
+}
+
+.close-modal {
+  position: absolute;
+  right: 20px;
+  top: 15px;
+  cursor: pointer;
+  font-size: 24px;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  margin-top: 10px;
+  font-family: inherit;
+}
+
+.btn-full {
+  flex: 1;
+  background: var(--status-blue);
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.btn-delete-modal {
+  background: #fff;
+  border: 1px solid #fee2e2;
+  border-radius: 12px;
+  padding: 10px 15px;
+  cursor: pointer;
+}
+
+@media (min-width: 768px) {
+  #habit-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+}

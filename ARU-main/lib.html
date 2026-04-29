@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <link rel="manifest" href="manifest.json" />
+    <meta name="theme-color" content="#ffadaa" />
+    <title>Book Vault | ARU</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      .library-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 15px;
+        margin-top: 20px;
+      }
+
+      .book-card {
+        background: white;
+        border-radius: 20px;
+        padding: 20px;
+        border: 1px solid var(--border);
+        box-shadow: 0 4px 12px rgba(93, 83, 74, 0.04);
+        display: flex;
+        flex-direction: row; /* Horizontal layout for a cleaner look */
+        align-items: center;
+        justify-content: space-between;
+        gap: 15px;
+        transition: 0.2s;
+      }
+
+      .book-card:hover {
+        transform: translateX(5px);
+        border-color: var(--status-blue);
+      }
+
+      .book-info {
+        flex-grow: 1;
+      }
+
+      .book-category-tag {
+        font-size: 0.65rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: var(--status-blue);
+        font-weight: 700;
+        margin-bottom: 4px;
+      }
+
+      .book-title {
+        font-weight: 700;
+        font-size: 1.05rem;
+        color: var(--text-main);
+        margin-bottom: 2px;
+      }
+
+      .book-author {
+        font-size: 0.85rem;
+        color: var(--text-muted);
+      }
+
+      .read-btn {
+        background: var(--status-blue);
+        color: white;
+        text-decoration: none;
+        padding: 10px 18px;
+        border-radius: 12px;
+        font-size: 0.85rem;
+        font-weight: 700;
+        white-space: nowrap; /* Keeps button on one line */
+        transition: 0.2s;
+        box-shadow: 0 4px 0px #7ca9d9;
+      }
+
+      .read-btn:active {
+        transform: translateY(2px);
+        box-shadow: 0 2px 0px #7ca9d9;
+      }
+
+      .search-bar {
+        width: 100%;
+        padding: 16px;
+        border-radius: 18px;
+        border: 2px solid var(--border);
+        font-family: inherit;
+        margin-bottom: 25px;
+        outline: none;
+        background: #fff;
+        transition: 0.3s;
+      }
+
+      .search-bar:focus {
+        border-color: var(--status-blue);
+      }
+
+      @media (max-width: 480px) {
+        .book-card {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        .read-btn {
+          width: 100%;
+          text-align: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav id="sidebar">
+      <div class="sidebar-header">
+        ☁️ Navigator <span class="close-btn" onclick="toggleSidebar()">×</span>
+      </div>
+      <ul>
+        <li><a href="index.html">📚 Syllabus Tracker</a></li>
+        <li><a href="projects.html">🚀 Project Manager</a></li>
+        <li><a href="internships.html">💼 Internships & Courses</a></li>
+        <li><a href="books.html">📖 Book Vault</a></li>
+        <li><a href="skills.html">⚡ Skills Matrix</a></li>
+        <li><a href="habits.html">🔥 Habit Tracker</a></li>
+        <li><a href="lib.html">📖 Book Vault</a></li>
+      </ul>
+    </nav>
+
+    <div class="main-content">
+      <header class="dashboard-header">
+        <div class="menu-trigger" onclick="toggleSidebar()">☰</div>
+        <div class="welcome-text">
+          <h1>Book Vault</h1>
+          <p>Simple & clean access to your library ✨</p>
+        </div>
+      </header>
+
+      <section class="dashboard-section">
+        <input
+          type="text"
+          id="book-search"
+          class="search-bar"
+          placeholder="Search title or author..."
+        />
+        <div class="library-grid" id="library-grid"></div>
+      </section>
+    </div>
+
+    <script src="lib.js"></script>
+    <script>
+      function toggleSidebar() {
+        document.getElementById("sidebar").classList.toggle("open");
+      }
+      document.addEventListener("click", function (event) {
+        const sidebar = document.getElementById("sidebar");
+        const menuTrigger = document.querySelector(".menu-trigger");
+        if (
+          sidebar.classList.contains("open") &&
+          !sidebar.contains(event.target) &&
+          !menuTrigger.contains(event.target)
+        ) {
+          toggleSidebar();
+        }
+      });
+    </script>
+  </body>
+</html>
